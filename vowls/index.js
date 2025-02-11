@@ -24,7 +24,7 @@ function vowels(str){
         }
     });
 
-console.log(count)
+return count
 }
 
 vowels('Hi There!'); // --> 3
