@@ -107,13 +107,91 @@ class LinkedList{
         }
         return null
     }
+
+    //Removes node at the provided index
+    removeAt(val){
+        let count = 0;
+        let node = this.head
+        let toDelete =  this.getAt(val)
+        if(toDelete === null){
+            return
+        }
+
+        while(node){
+             if(val === 0 && count===0){
+                this.head = toDelete.next
+                 return
+             }
+            if(count === val - 1 ){
+                node.next=toDelete.next
+                return    
+            }
+            count++
+            node = node.next
+        }
+    }
+
+    //Create an insert a new node at provided index. 
+    // If index is out of bounds, add the node to the end of the list.
+    insertAt(data,val){
+        let counter = 0
+        //let nodeAtIndex = this.getAt(val)
+        let node = this.head
+        if(val>this.size()){
+            this.insertLast(data)
+            return
+        }
+       
+        while(node)
+        {   
+            if(val === 0 && counter===0){
+            let newNode = new Node(data,this.head)
+            this.head = newNode
+             return
+            }
+            if(counter===val-1){
+                let newNode = new Node(data,node.next)
+                node.next = newNode
+                return
+            }
+            counter++
+            node = node.next
+            
+        }
+        this.head = new Node(data,null)
+
+    }
+
+    //Calls the provided function with every node of the chain
+
+    forEach(func){
+        let node = this.head
+        
+        while(node){
+            func(node)
+            node=node.next
+        }
+    }
+
+    //Linked list should be compatible as the subject of a 'for...of' loop
+    *[Symbol.iterator](){
+        let node = this.head;
+        while(node){
+            yield node;
+            node = node.next;
+        }
+    }
 }
 
+const list = new LinkedList();
 
-const l = new LinkedList();
+list.insertLast(1);
+list.insertLast(2);
+list.insertLast(3);
+list.insertLast(4);
 
-    l.insertLast(1);
-    l.insertLast(2);
-    l.insertLast(3);
-    l.insertLast(4);
-    console.log(l.getAt(0).data)
+for (let node of list) {
+node.data += 10;
+}
+
+console.log(list.getAt(1).data) // returns node with data 11
