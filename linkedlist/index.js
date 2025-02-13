@@ -1,13 +1,13 @@
 
 
-class Node{
+export class Node{
     constructor(data,next){
         this.data=data
         this.next= next?next:null
     }
 }
 
-class LinkedList{
+ export class LinkedList{
     constructor(){
         this.head = null
     }
@@ -183,15 +183,4 @@ class LinkedList{
     }
 }
 
-const list = new LinkedList();
 
-list.insertLast(1);
-list.insertLast(2);
-list.insertLast(3);
-list.insertLast(4);
-
-for (let node of list) {
-node.data += 10;
-}
-
-console.log(list.getAt(1).data) // returns node with data 11

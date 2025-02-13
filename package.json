@@ -1,0 +1,9 @@
+{
+    "name": "dev",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "author": "Fagner Nunes",
+    "license": "ISC",
+    "type": "module"
+  }
