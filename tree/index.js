@@ -15,13 +15,17 @@ The constructor should accept an argument that gets assigned to the data propert
 The node class should have methods add and remove
  */
 
-class Node{
-
+export class Node{
+  /**
+   * 
+   * node class 
+   * a node has data and children 
+   */
     constructor(data){
         this.data = data  //
         this.children = []
     }
-
+    // add data  takes data and creates a new node  andd ads to chilldren
     add(data){
         this.children.push(new Node(data))   
     }
@@ -32,7 +36,7 @@ class Node{
     }
 }
 
-class Tree{
+export class Tree{
     constructor()
     {
         this.root = null
@@ -49,16 +53,31 @@ class Tree{
         }
         console.log("done")
     }
+    traverseDF(func){
+        let starter = []
+        starter.push(this.root)
+
+        while(starter.length >0){
+            let n = starter.shift()
+            func(n)
+            starter =[...n.children,...starter]
+            //console.log(starter)
+        }
+    }
 }
+
 
 const t = new Tree()
 const n = new Node('root')
+const a = new Node("f")
+a.add("g")
 n.add("a")
 n.add("b")
 n.add("c")
+n.add(a)
 function func(n){
     console.log(n.data)
 }
 t.root = n
 
-t.traverseBF(func)
+t.traverseDF(func)
